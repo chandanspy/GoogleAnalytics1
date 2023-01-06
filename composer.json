@@ -1,0 +1,22 @@
+{
+    "name": "echidna/google-analytics",
+    "description": "Package to integrate google analytics and tag manager for spryker b2b and b2c",
+    "autoload": {
+        "psr-4": {
+            "Echidna\\": "src/Echidna"
+        }
+    },
+    "authors": [
+        {
+            "name": "chandanspy",
+            "email": "chandan.k@echidnainc.com"
+        }
+    ],
+    "require": {},
+    "autoload-dev": {
+        "psr-4": {
+            "Echidna\\": "tests/Echidna/",
+            "Generated\\": "src/Generated/"
+        }
+    }
+}
