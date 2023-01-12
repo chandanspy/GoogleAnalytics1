@@ -1,20 +1,20 @@
 <?php
 
-namespace Echidna\Yves\GoogleTagManager\ControllerEventHandler\Checkout;
+namespace Echidna\Yves\GoogleAnalytics\ControllerEventHandler\Checkout;
 
 use Codeception\Test\Unit;
-use Echidna\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToCartClientInterface;
-use Echidna\Yves\GoogleTagManager\Session\EnhancedEcommerceSessionHandlerInterface;
+use Echidna\Yves\GoogleAnalytics\Dependency\Client\GoogleAnalyticsToCartClientInterface;
+use Echidna\Yves\GoogleAnalytics\Session\EchidnaEcommerceSessionHandlerInterface;
 
 class PlaceOrderControllerEventHandlerTest extends Unit
 {
     /**
-     * @var EnhancedEcommerceSessionHandlerInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @var EchidnaEcommerceSessionHandlerInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $sessionHandlerMock;
 
     /**
-     * @var GoogleTagManagerToCartClientInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @var GoogleAnalyticsToCartClientInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $cartClientMock;
 
@@ -27,11 +27,11 @@ class PlaceOrderControllerEventHandlerTest extends Unit
     {
         parent::_before();
 
-        $this->sessionHandlerMock = $this->getMockBuilder(EnhancedEcommerceSessionHandlerInterface::class)
+        $this->sessionHandlerMock = $this->getMockBuilder(EchidnaEcommerceSessionHandlerInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->cartClientMock = $this->getMockBuilder(GoogleTagManagerToCartClientInterface::class)
+        $this->cartClientMock = $this->getMockBuilder(GoogleAnalyticsToCartClientInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -1,27 +1,27 @@
 <?php
 
-namespace Echidna\Yves\GoogleTagManager\Plugin\VariableBuilder\DefaultVariables;
+namespace Echidna\Yves\GoogleAnalytics\Plugin\VariableBuilder\DefaultVariables;
 
 use Codeception\Test\Unit;
-use Echidna\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToCartClientInterface;
-use Echidna\Yves\GoogleTagManager\GoogleTagManagerFactory;
+use Echidna\Yves\GoogleAnalytics\Dependency\Client\GoogleAnalyticsToCartClientInterface;
+use Echidna\Yves\GoogleAnalytics\GoogleAnalyticsFactory;
 use Generated\Shared\Transfer\AddressTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 class CustomerEmailHashVariableBuilderPluginTest extends Unit
 {
     /**
-     * @var \Echidna\Yves\GoogleTagManager\GoogleTagManagerFactory|\PHPUnit\Framework\MockObject\MockObject
+     * @var \Echidna\Yves\GoogleAnalytics\GoogleAnalyticsFactory|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $factoryMock;
 
     /**
-     * @var \Echidna\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToCartClientInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @var \Echidna\Yves\GoogleAnalytics\Dependency\Client\GoogleAnalyticsToCartClientInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $cartClientMock;
 
     /**
-     * @var \Echidna\Yves\GoogleTagManager\Plugin\VariableBuilder\DefaultVariables\CurrencyVariableBuilderPlugin
+     * @var \Echidna\Yves\GoogleAnalytics\Plugin\VariableBuilder\DefaultVariables\CurrencyVariableBuilderPlugin
      */
     protected $plugin;
 
@@ -40,8 +40,8 @@ class CustomerEmailHashVariableBuilderPluginTest extends Unit
      */
     protected function _before()
     {
-        $this->factoryMock = $this->createMock(GoogleTagManagerFactory::class);
-        $this->cartClientMock = $this->createMock(GoogleTagManagerToCartClientInterface::class);
+        $this->factoryMock = $this->createMock(GoogleAnalyticsFactory::class);
+        $this->cartClientMock = $this->createMock(GoogleAnalyticsToCartClientInterface::class);
         $this->quoteTransferMock = $this->createMock(QuoteTransfer::class);
         $this->billingAddressTransfer = $this->createMock(AddressTransfer::class);
 

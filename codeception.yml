@@ -1,4 +1,4 @@
-namespace: Echidna/google-tagmanager
+namespace: Echidna/google-analytics
 
 suites:
   unit:

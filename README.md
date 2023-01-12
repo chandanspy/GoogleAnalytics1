@@ -12,12 +12,12 @@ composer require echidna/google-analytics
 ## 1. Add the Container ID in the configuration file 
 
 ```
-$config[GoogleTagManagerConstants::CONTAINER_ID] = 'GTM-XXXX'; 
+$config[GoogleAnalyticsConstants::CONTAINER_ID] = 'GTM-XXXX'; 
 ```
 
 ## 2. Enable the Module in the configuration file 
 ```
-$config[GoogleTagManagerConstants::ENABLED] = true;
+$config[GoogleAnalyticsConstants::ENABLED] = true;
 ```
 
 ## 3. Include the namespace as a core namespace in the configuration file 
@@ -31,7 +31,7 @@ $config[KernelConstants::CORE_NAMESPACES] = [
 ## 4. Add twig service provider to YvesBootstrap.php in registerServiceProviders()
 
 ```
-$this->application->register(new GoogleTagManagerTwigServiceProvider());
+$this->application->register(new GoogleAnalyticsTwigServiceProvider());
 ```
 
 ## 5. Add the Twig Extension in the neccessary Twig Templates
@@ -40,16 +40,16 @@ $this->application->register(new GoogleTagManagerTwigServiceProvider());
   Application/layout/layout.twig 
   between <head></head> tags
   
-  {% block googletagmanager_data_layer %} {{ dataLayer('other', {}) }}{% endblock %} 
-  {{ googleTagManager('@GoogleTagManager/partials/tag.twig') }}
+  {% block GoogleAnalytics_data_layer %} {{ dataLayer('other', {}) }}{% endblock %} 
+  {{ GoogleAnalytics('@GoogleAnalytics/partials/tag.twig') }}
   
   after <body> tag
-  {{ googleTagManager('@GoogleTagManager/partials/tag-noscript.twig') }}
+  {{ GoogleAnalytics('@GoogleAnalytics/partials/tag-noscript.twig') }}
 ```
 
 ```
   Catalog/catalog/index.twig 
-  {% block googletagmanager_data_layer %}
+  {% block GoogleAnalytics_data_layer %}
       {% set params = { 'category' : category, 'products' : products} %}
       {{ dataLayer('category', params) }}
   {% endblock %}
@@ -57,7 +57,7 @@ $this->application->register(new GoogleTagManagerTwigServiceProvider());
 
 ```
   Product/product/detail.twig 
-  {% block googletagmanager_data_layer %}
+  {% block GoogleAnalytics_data_layer %}
       {% set params = { 'product' : product} %}
       {{ dataLayer('product', params) }}
   {% endblock %}
@@ -65,14 +65,14 @@ $this->application->register(new GoogleTagManagerTwigServiceProvider());
 
 ```
   Cart/cart/index.twig 
-  {% block googletagmanager_data_layer %}
+  {% block GoogleAnalytics_data_layer %}
       {{ dataLayer('cart', {}) }}
   {% endblock %}
 ```
 
 ```
   Checkout/checkout/partial/success.twig 
-  {% block googletagmanager_data_layer %}
+  {% block GoogleAnalytics_data_layer %}
       {% set params = { 'order' : orderTransfer} %}
       {{ dataLayer('order', params) }}
   {% endblock %}

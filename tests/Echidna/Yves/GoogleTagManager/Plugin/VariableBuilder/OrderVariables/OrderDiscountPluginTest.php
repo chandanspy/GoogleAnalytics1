@@ -1,6 +1,6 @@
 <?php
 
-namespace Echidna\Yves\GoogleTagManager\Plugin\VariableBuilder\OrderVariables;
+namespace Echidna\Yves\GoogleAnalytics\Plugin\VariableBuilder\OrderVariables;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\CalculatedDiscountTransfer;
@@ -25,7 +25,7 @@ class OrderDiscountPluginTest extends Unit
     protected $calculatedDiscountTransferMock;
 
     /**
-     * @var \Echidna\Yves\GoogleTagManager\Plugin\VariableBuilder\OrderVariables\OrderDiscountPlugin
+     * @var \Echidna\Yves\GoogleAnalytics\Plugin\VariableBuilder\OrderVariables\OrderDiscountPlugin
      */
     protected $plugin;
 

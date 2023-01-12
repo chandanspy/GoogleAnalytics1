@@ -1,12 +1,12 @@
 <?php
 
-namespace Echidna\Yves\GoogleTagManager\ControllerEventHandler\Cart;
+namespace Echidna\Yves\GoogleAnalytics\ControllerEventHandler\Cart;
 
 use Codeception\Test\Unit;
-use Echidna\Shared\GoogleTagManager\EnhancedEcommerceConstants;
-use Echidna\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToCartClientInterface;
-use Echidna\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToProductStorageClientInterface;
-use Echidna\Yves\GoogleTagManager\Session\EnhancedEcommerceSessionHandlerInterface;
+use Echidna\Shared\GoogleAnalytics\EchidnaEcommerceConstants;
+use Echidna\Yves\GoogleAnalytics\Dependency\Client\GoogleAnalyticsToCartClientInterface;
+use Echidna\Yves\GoogleAnalytics\Dependency\Client\GoogleAnalyticsToProductStorageClientInterface;
+use Echidna\Yves\GoogleAnalytics\Session\EchidnaEcommerceSessionHandlerInterface;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ChangeQuantityProductControllerEventHandlerTest extends Unit
 {
     /**
-     * @var EnhancedEcommerceSessionHandlerInterface|MockObject
+     * @var EchidnaEcommerceSessionHandlerInterface|MockObject
      */
     protected $sessionHandlerMock;
 
@@ -41,7 +41,7 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
     protected $quoteTransferMock;
 
     /**
-     * @var GoogleTagManagerToCartClientInterface|MockObject
+     * @var GoogleAnalyticsToCartClientInterface|MockObject
      */
     protected $cartClientMock;
 
@@ -51,7 +51,7 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
     protected $eventHandler;
 
     /**
-     * @var GoogleTagManagerToProductStorageClientInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var GoogleAnalyticsToProductStorageClientInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     protected $storageClientMock;
 
@@ -60,7 +60,7 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
      */
     protected function _before(): void
     {
-        $this->sessionHandlerMock = $this->getMockBuilder(EnhancedEcommerceSessionHandlerInterface::class)
+        $this->sessionHandlerMock = $this->getMockBuilder(EchidnaEcommerceSessionHandlerInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -101,7 +101,7 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->cartClientMock = $this->getMockBuilder(GoogleTagManagerToCartClientInterface::class)
+        $this->cartClientMock = $this->getMockBuilder(GoogleAnalyticsToCartClientInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -127,8 +127,8 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU-111'],
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 99],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU-111'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 99],
             ]));
 
         $this->cartClientMock->expects($this->atLeastOnce())
@@ -172,8 +172,8 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU-111'],
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 1],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU-111'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 1],
             ]));
 
         $this->cartClientMock->expects($this->atLeastOnce())
@@ -217,7 +217,7 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 1],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 1],
             ]));
 
         $this->requestMock->expects($this->exactly(2))
@@ -238,7 +238,7 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU-111'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU-111'],
             ]));
 
         $this->cartClientMock->expects($this->never())
@@ -256,8 +256,8 @@ class ChangeQuantityProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU_NOT_IN_QUOTE'],
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 3],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU_NOT_IN_QUOTE'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 3],
             ]));
 
         $this->quoteTransferMock->expects($this->atLeastOnce())

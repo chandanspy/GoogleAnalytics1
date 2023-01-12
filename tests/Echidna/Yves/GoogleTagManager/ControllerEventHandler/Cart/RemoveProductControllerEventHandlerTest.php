@@ -1,11 +1,11 @@
 <?php
 
-namespace Echidna\Yves\GoogleTagManager\ControllerEventHandler\Cart;
+namespace Echidna\Yves\GoogleAnalytics\ControllerEventHandler\Cart;
 
 use Codeception\Test\Unit;
-use Echidna\Shared\GoogleTagManager\EnhancedEcommerceConstants;
-use Echidna\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToCartClientInterface;
-use Echidna\Yves\GoogleTagManager\Session\EnhancedEcommerceSessionHandlerInterface;
+use Echidna\Shared\GoogleAnalytics\EchidnaEcommerceConstants;
+use Echidna\Yves\GoogleAnalytics\Dependency\Client\GoogleAnalyticsToCartClientInterface;
+use Echidna\Yves\GoogleAnalytics\Session\EchidnaEcommerceSessionHandlerInterface;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use ReflectionClass;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class RemoveProductControllerEventHandlerTest extends Unit
 {
     /**
-     * @var EnhancedEcommerceSessionHandlerInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @var EchidnaEcommerceSessionHandlerInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $sessionHandlerMock;
 
@@ -39,7 +39,7 @@ class RemoveProductControllerEventHandlerTest extends Unit
     protected $quoteTransferMock;
 
     /**
-     * @var GoogleTagManagerToCartClientInterface|\PHPUnit\Framework\MockObject\MockObject
+     * @var GoogleAnalyticsToCartClientInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $cartClientMock;
 
@@ -53,7 +53,7 @@ class RemoveProductControllerEventHandlerTest extends Unit
      */
     protected function _before(): void
     {
-        $this->sessionHandlerMock = $this->getMockBuilder(EnhancedEcommerceSessionHandlerInterface::class)
+        $this->sessionHandlerMock = $this->getMockBuilder(EchidnaEcommerceSessionHandlerInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -94,7 +94,7 @@ class RemoveProductControllerEventHandlerTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->cartClientMock = $this->getMockBuilder(GoogleTagManagerToCartClientInterface::class)
+        $this->cartClientMock = $this->getMockBuilder(GoogleAnalyticsToCartClientInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -149,7 +149,7 @@ class RemoveProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->atLeastOnce())
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, ''],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, ''],
             ]));
 
         $this->cartClientMock->expects($this->atLeastOnce())
@@ -165,7 +165,7 @@ class RemoveProductControllerEventHandlerTest extends Unit
 
         $methodGetProductFromQuote = $this->getMethod('getProductFromQuote');
         $result = $methodGetProductFromQuote->invokeArgs($this->eventHandler, [
-            $this->requestMock->get(EnhancedEcommerceConstants::PRODUCT_FIELD_SKU),
+            $this->requestMock->get(EchidnaEcommerceConstants::PRODUCT_FIELD_SKU),
         ]);
         $this->assertNull($result);
 
@@ -180,7 +180,7 @@ class RemoveProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->atLeastOnce())
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU_NOT_IN_QUOTE'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, 'SKU_NOT_IN_QUOTE'],
             ]));
 
         $this->cartClientMock->expects($this->atLeastOnce())
@@ -196,7 +196,7 @@ class RemoveProductControllerEventHandlerTest extends Unit
 
         $methodGetProductFromQuote = $this->getMethod('getProductFromQuote');
         $result = $methodGetProductFromQuote->invokeArgs($this->eventHandler, [
-            $this->requestMock->get(EnhancedEcommerceConstants::PRODUCT_FIELD_SKU),
+            $this->requestMock->get(EchidnaEcommerceConstants::PRODUCT_FIELD_SKU),
         ]);
         $this->assertNull($result);
 

@@ -1,18 +1,18 @@
 <?php
 
-namespace Echidna\Yves\GoogleTagManager\ControllerEventHandler\Cart;
+namespace Echidna\Yves\GoogleAnalytics\ControllerEventHandler\Cart;
 
 use Codeception\Test\Unit;
-use Echidna\Shared\GoogleTagManager\EnhancedEcommerceConstants;
-use Echidna\Yves\GoogleTagManager\Session\EnhancedEcommerceSessionHandlerInterface;
-use Generated\Shared\Transfer\EnhancedEcommerceProductDataTransfer;
+use Echidna\Shared\GoogleAnalytics\EchidnaEcommerceConstants;
+use Echidna\Yves\GoogleAnalytics\Session\EchidnaEcommerceSessionHandlerInterface;
+use Generated\Shared\Transfer\EchidnaEcommerceProductDataTransfer;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\HttpFoundation\Request;
 
 class AddProductControllerEventHandlerTest extends Unit
 {
     /**
-     * @var EnhancedEcommerceSessionHandlerInterface|MockObject
+     * @var EchidnaEcommerceSessionHandlerInterface|MockObject
      */
     protected $sessionHandlerMock;
 
@@ -22,9 +22,9 @@ class AddProductControllerEventHandlerTest extends Unit
     protected $requestMock;
 
     /**
-     * @var EnhancedEcommerceProductDataTransfer|MockObject
+     * @var EchidnaEcommerceProductDataTransfer|MockObject
      */
-    protected $enhancedEcommerceProductDataTransferMock;
+    protected $EchidnaEcommerceProductDataTransferMock;
 
     /**
      * @var AddProductControllerEventHandler
@@ -48,11 +48,11 @@ class AddProductControllerEventHandlerTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->sessionHandlerMock = $this->getMockBuilder(EnhancedEcommerceSessionHandlerInterface::class)
+        $this->sessionHandlerMock = $this->getMockBuilder(EchidnaEcommerceSessionHandlerInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->enhancedEcommerceProductDataTransferMock = $this->getMockBuilder(EnhancedEcommerceProductDataTransfer::class)
+        $this->EchidnaEcommerceProductDataTransferMock = $this->getMockBuilder(EchidnaEcommerceProductDataTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -67,8 +67,8 @@ class AddProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->willReturn($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, 'TEST_SKU'],
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 11],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, 'TEST_SKU'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, 11],
             ]));
 
         $this->sessionHandlerMock->expects($this->once())
@@ -85,7 +85,7 @@ class AddProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_SKU, null, 'TEST_SKU'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_SKU, null, 'TEST_SKU'],
             ]));
 
         $this->sessionHandlerMock->expects($this->once())
@@ -102,7 +102,7 @@ class AddProductControllerEventHandlerTest extends Unit
         $this->requestMock->expects($this->exactly(2))
             ->method('get')
             ->will($this->returnValueMap([
-                [EnhancedEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, '11'],
+                [EchidnaEcommerceConstants::PRODUCT_FIELD_QUANTITY, null, '11'],
             ]));
 
         $this->sessionHandlerMock->expects($this->never())
